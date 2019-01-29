@@ -30,7 +30,8 @@ def Decryptor(Encrypted_string,key):
         j=(j+1)%l
     return dec_string
     
-        
+def Decrypt_Without_key(Encrypted_string):
+    #have to implement
         
 plaintext=input("Enter the text to be encrypted:")
 keyword=input("Enter the Key:")
