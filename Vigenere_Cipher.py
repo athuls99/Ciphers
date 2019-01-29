@@ -11,7 +11,7 @@ def Encryptor(plain_t,key):
         if (i.isupper() and key[j].isupper()):
             echar=65+(ord(i)+ord(key[j]))%26
         elif (i.islower() and key[j].islower()):
-            echar=65+(ord(i)+ord(key[j]))%26
+            echar=97+(ord(i)+ord(key[j]))%26
         enc_string+=chr(echar)
         j=(j+1)%l
     return enc_string
