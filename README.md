@@ -6,4 +6,9 @@ That is with key.
 Without Key I have to do.
 
 Playfair cipher is still incomplete.
-Work in progress.....
+Encryption is complete.
+Decryption we shall finish tommorrow.
+Refer to this vedio to understand playfair cipher.
+Other places have different implementation So it is advisable to follow this only
+https://www.youtube.com/watch?v=quKhvu2tPy8&t=43s
+
