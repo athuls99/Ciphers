@@ -48,13 +48,25 @@ for i in messagePair:
             temp2x = encrypt.index(j)
     index.append((temp1x,temp1y,temp2x,temp2y))
 print(index)
-nextx1;nextx2;nexty1;nexty2;
+
+final = [];
 for val in index:
     if(val[0] == val[2]):
+        nextx1 = val[0];
+        nextx2 = val[2];
+        nexty1 = (val[1]+1)%5
+        nexty2 = (val[3]+1)%5
+        final.append(encrypt[nextx1][nexty1] + encrypt[nextx2][nexty2])
+    elif(val[1] == val[3]):
         nextx1 = (val[0]+1)%5
         nextx2 = (val[2]+1)%5
         nexty1 = val[1];
-        
-    elif(val[1] == val[3]):
-
+        nexty2 = val[3];
+        final.append(encrypt[nextx1][nexty1] + encrypt[nextx2][nexty2])
     else:    
+        nextx1 = val[0]
+        nextx2 = val[2]
+        nexty1=val[3]
+        nexty2=val[1]
+        final.append(encrypt[nextx1][nexty1] + encrypt[nextx2][nexty2])
+print(final)
