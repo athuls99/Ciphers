@@ -5,4 +5,5 @@ In Vigenere Cipher Encryption as well as decryption is done.
 That is with key.
 Without Key I have to do.
 
-
+Playfair cipher is still incomplete.
+Work in progress.....
