@@ -2,6 +2,7 @@
 
 # dependencies
 from math import ceil
+from wordsegment import load,segment
 
 # functions
 
@@ -39,10 +40,24 @@ def darrange(text,key):
         key[k].append(text[i])
     return key
 
-def decrypt(lkey,key):
+def decrypt(lkey,key,tLen):
     sortedkey = "".join(sorted(key))
-    decText = "".join(list(map(lambda x: "".join(lkey[sortedkey.index(x)]),key)))
+    text = "".join(list(map(lambda x: "".join(lkey[sortedkey.index(x)]),key)))
+    kLen = len(key)
+    interval = int(tLen/kLen)
+    decText = ""
+    k = 1
+    for i in range(interval):
+        j = i
+        while j<tLen:
+            decText += text[j]
+            j = i + interval * k
+            k += 1
+        k = 1
     return decText
+
+# preprocess
+load()
 
 # main
 text = input("Enter the text: ")
@@ -50,10 +65,11 @@ text = text.replace(" ","")
 key = input("Enter the key: ")
 akey = arrange(text,list(key))
 encText = encrypt(akey,key)
-print(akey)
 print("The encrypted text: ",encText)
 dkey = darrange(encText,sorted(key))
-print(dkey)
-decText = decrypt(dkey,key)
-print(decText)
+decText = decrypt(dkey,key,len(encText))
+decText = segment(decText)
+if "x" in decText[-1]:
+    decText = decText[:-1]
+print(" ".join(decText))
     
