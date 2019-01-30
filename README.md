@@ -12,3 +12,6 @@ Refer to this video to understand playfair cipher.
 Other places have different implementation So it is advisable to follow this only
 https://www.youtube.com/watch?v=quKhvu2tPy8&t=43s
 
+Hill Cipher Encryption complete.
+Decryption little bit left.
+

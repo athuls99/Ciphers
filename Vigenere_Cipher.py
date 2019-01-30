@@ -11,7 +11,7 @@ def Encryptor(plain_t,key):
         if (i.isupper() and key[j].isupper()):
             echar=65+(ord(i)+ord(key[j]))%26
         elif (i.islower() and key[j].islower()):
-            echar=97+(ord(i)+ord(key[j]))%26
+            echar=97+((ord(i)+ord(key[j]))%26)
         enc_string+=chr(echar)
         j=(j+1)%l
     return enc_string
@@ -25,13 +25,11 @@ def Decryptor(Encrypted_string,key):
         if (i.isupper() and key[j].isupper()):
             dchar=65+(ord(i)-ord(key[j])+26)%26
         elif (i.islower() and key[j].islower()):
-            dchar=97+(ord(i)-ord(key[j])+26)%26
+            dchar=97+((ord(i)-ord(key[j])+26)%26)
         dec_string+=chr(dchar)
         j=(j+1)%l
     return dec_string
     
-def Decrypt_Without_key(Encrypted_string):
-    #have to implement
         
 plaintext=input("Enter the text to be encrypted:")
 keyword=input("Enter the Key:")
