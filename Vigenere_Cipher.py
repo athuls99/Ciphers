@@ -29,7 +29,8 @@ def Decryptor(Encrypted_string,key):
         dec_string+=chr(dchar)
         j=(j+1)%l
     return dec_string
-    
+
+
         
 plaintext=input("Enter the text to be encrypted:")
 keyword=input("Enter the Key:")
