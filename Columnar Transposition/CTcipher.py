@@ -60,16 +60,19 @@ def decrypt(lkey,key,tLen):
 load()
 
 # main
-text = input("Enter the text: ")
-text = text.replace(" ","")
-key = input("Enter the key: ")
-akey = arrange(text,list(key))
-encText = encrypt(akey,key)
-print("The encrypted text: ",encText)
-dkey = darrange(encText,sorted(key))
-decText = decrypt(dkey,key,len(encText))
-decText = segment(decText)
-if "x" in decText[-1]:
-    decText = decText[:-1]
-print(" ".join(decText))
+def main():
+    text = input("Enter the text: ")
+    text = text.replace(" ","")
+    key = input("Enter the key: ")
+    akey = arrange(text,list(key))
+    encText = encrypt(akey,key)
+    print("The encrypted text: ",encText)
+    dkey = darrange(encText,sorted(key))
+    decText = decrypt(dkey,key,len(encText))
+    decText = segment(decText)
+    if "x" in decText[-1]:
+        decText = decText[:-1]
+    print(" ".join(decText))
+
+main()
     
