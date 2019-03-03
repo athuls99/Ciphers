@@ -1,78 +1,38 @@
 # Program to encrypt text into columnar tranposition cipher
 
 # dependencies
-from math import ceil
 from wordsegment import load,segment
-
-# functions
-
-def arrange(text,key):
-    lText = len(text)
-    lKey = len(key)
-    total = ceil(lText/lKey)*lKey
-    text = text + (total - lText)*"x"
-    for i in range(total):
-        j = i%lKey
-        if type(key[j]) is not list: 
-            key[j] = []
-        key[j].append(text[i])
-    return key
-
-def encrypt(lkey,key):
-    sortedkey = "".join(sorted(key))
-    encText = "".join(list(map(lambda x: "".join(lkey[key.index(x)]),sortedkey)))
-    return encText 
-
-def darrange(text,key):
-    lText = len(text)
-    lKey = len(key)
-    interval = lText/lKey
-    j = 0
-    k = 0
-    for i in range(lText):
-        if not j < interval:
-            k += 1
-            j = 1
-        else:
-            j += 1
-        if type(key[k]) is not list: 
-            key[k] = []
-        key[k].append(text[i])
-    return key
-
-def decrypt(lkey,key,tLen):
-    sortedkey = "".join(sorted(key))
-    text = "".join(list(map(lambda x: "".join(lkey[sortedkey.index(x)]),key)))
-    kLen = len(key)
-    interval = int(tLen/kLen)
-    decText = ""
-    k = 1
-    for i in range(interval):
-        j = i
-        while j<tLen:
-            decText += text[j]
-            j = i + interval * k
-            k += 1
-        k = 1
-    return decText
+from functions import *
 
 # preprocess
 load()
 
-# main
-def main():
+# interface functions
+def encryptText():
     text = input("Enter the text: ")
     text = text.replace(" ","")
     key = input("Enter the key: ")
-    akey = arrange(text,list(key))
-    encText = encrypt(akey,key)
-    print("The encrypted text: ",encText)
-    dkey = darrange(encText,sorted(key))
-    decText = decrypt(dkey,key,len(encText))
-    decText = segment(decText)
-    if "x" in decText[-1]:
-        decText = decText[:-1]
-    print(" ".join(decText))
+    keyList = arrange(text,list(key))
+    encryptedText = encrypt(keyList,key)
+    print("The encrypted text: ", encryptedText)
 
-main()
+def decryptText():
+    text = input("Enter the encrypted text: ")
+    text = text.replace(" ","")
+    key = input("Enter the key: ")
+    keyList = darrange(text,list(key))
+    decryptedText = decrypt(keyList,key,len(text))
+    decryptedText = segment(decryptedText)
+    if "x" in decryptedText[-1]:
+        decryptedText = decryptedText[:-1]
+    print("The decrypted text: "," ".join(decryptedText))
+
+# main
+if __name__ == "__main__":
+    n = int(input("1.Encrypt\n2.Decrypt with key\n3.Decrypt without key\n"))
+    if n == 1:
+        encryptText()
+    elif n == 2:
+        decryptText()
+    
     
