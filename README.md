@@ -21,3 +21,5 @@ All given ciphers encryprion and decryption done with key.
 This link might be helpfull for decrypting playfair cipher without key.
 https://crypto.stackexchange.com/questions/35722/how-to-find-the-keyword-of-the-playfair-cipher-given-the-plaintext-and-the-ciph
 
+Still have to complete Vigenere without key.
+

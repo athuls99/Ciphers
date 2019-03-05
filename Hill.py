@@ -67,7 +67,11 @@ def Decryptor(Encrypted_string,keyw):
 plain_text=input("Enter the Text to be encrypted:")
 Key_word=input("Enter the Key to be used:")
 Encrypted_string=Encryptor(plain_text,Key_word)
-Decrypted_string=Decryptor(Encrypted_string,Key_word)
+try :
+    Decrypted_string=Decryptor(Encrypted_string,Key_word)
+except:
+    Decrypted_string=""
+    
 print("Encrypted String:",Encrypted_string)
 print("Decrypted String:",Decrypted_string)
 
