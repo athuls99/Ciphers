@@ -3,13 +3,14 @@ from time import time
 from math import ceil
 from wordsegment import load,segment
 from itertools import permutations
+from functools import reduce
 from collections import Counter
+import re
 import ngrams
 
 # preprocess
 load()
 fitness = ngrams.ngram_score('quadgrams.txt')
-
 expectedvalues = {'a':0.082,'b':0.015,'c':0.028,'d':0.042,'e':0.127,'f':0.022,'g':0.020,
                  'h':0.061,'i':0.07,'j':0.002,'k':0.008,'l':0.040,'m':0.024,'n':0.068,
                  'o':0.075,'p':0.02,'q':0.001,'r':0.06,'s':0.063,'t':0.090,'u':0.028,
@@ -94,10 +95,10 @@ def getWord(textList,ind):
     return word
 
 def getBestPerm(fWord,sWord,cRange):
-    maxVal = 0
-    bestPerm = 0
+    bestPerm = []
     perm = permutations(cRange)
     i = next(perm)
+    limit = 5
     while True:
         word = ""
         for j in i:
@@ -105,55 +106,45 @@ def getBestPerm(fWord,sWord,cRange):
         for j in i:
             word += sWord[j]
         ngramVal = fitness.score(word)
-        if maxVal == 0:
-            maxVal = ngramVal
-        elif maxVal < ngramVal:
-            maxVal = ngramVal
-            bestPerm = i
+        print(word,ngramVal,i)
+        if len(bestPerm) >= limit:
+            remVal = min(bestPerm)            
+            if ngramVal > remVal[0]:
+                bestPerm.remove(remVal)
+                bestPerm.append((ngramVal,i))
+        else:
+            bestPerm.append((ngramVal,i))
         try:
             i = next(perm)
         except:
             break
-    #print(bestPerm)
+    print("bestperm:",bestPerm)
     return bestPerm
 
-def calChi(text):
-    done = []
-    chivalue = 0
-    othervalues = len(text)
-    counts = Counter(text)
-    for j in range(len(text)):
-        if j not in done:
-            #count the occurences of the given character in the text
-            obscount = counts[text[j]]
-            #get count of the character according to the distribution
-            expcount = expectedvalues[text[j]]*len(text)
-            othervalues -= expcount
-            chisq = obscount - expcount
-            chisq = (chisq**2)/expcount
-            chivalue+=chisq
-    return chivalue + othervalues
-
-def getText(textList,perm):
-    text = ""
-    interval = len(textList[0])
-    extraList = list(range(interval))
-    #print(textList,perm,interval)
-    for i in perm:
-        for j in range(interval):
-            if type(extraList[j]) is not list:
-                extraList[j] = []
-            extraList[j].append(textList[i][j])
-            #print(extraList)
-    for i in extraList:
-        text += "".join(i)
-    return text
+def getText(textList,perms):
+    texts = []
+    for j in perms:
+        text = ""
+        interval = len(textList[0])
+        extraList = list(range(interval))
+        #print(textList,perm,interval)
+        perm = j[1]
+        for i in perm:
+            for j in range(interval):
+                if type(extraList[j]) is not list:
+                    extraList[j] = []
+                extraList[j].append(textList[i][j])
+                #print(extraList)
+        for i in extraList:
+            text += "".join(i)
+        texts.append(text)
+    return texts
 
 def nkDecrpt(textList, perm):
     firstWord = getWord(textList,0)
     secondWord = getWord(textList,1)
     bestPerm = getBestPerm(firstWord,secondWord,perm)
-    #print(firstWord,secondWord)
+    print(firstWord)
     text = getText(textList,bestPerm)
     return text
 
@@ -164,7 +155,7 @@ def nkDecrpt(textList, perm):
 # exporting functions
 def encryptText():
     text = input("Enter the text: ")
-    text = text.replace(" ","")
+    text = re.sub(r'[^A-Za-z]',"",text)
     key = input("Enter the key: ")
     sTime = time()
     keyList = arrange(text,list(key))
@@ -190,19 +181,31 @@ def nkDecryptText():
     sTime = time()
     textLength = len(text)
     maxRange = 11 if textLength > 11 else textLength
+    decryptedText = ""
     for i in range(3,maxRange):
         if textLength % i == 0: 
             textList = dArrange(text,i)
             #perm = list(permutations(list(range(i))))
             decryptedText = nkDecrpt(textList,list(range(i)))
-            ngramVal = fitness.score(decryptedText)
-            print(decryptedText,ngramVal,i)
-            if ngramVal >= -115:
-                decryptedText = segment(decryptedText)
-                if "x" in decryptedText[-1]:
-                    decryptedText = decryptedText[:-1]
-                print("The decrypted text: "," ".join(decryptedText))
-                print("Total time:",time()-sTime)
+            dtextlist = []
+            for dText in decryptedText:
+                ngramVal = fitness.score(dText)
+                print(dText,ngramVal,i)
+                dtextlist.append((ngramVal,dText))
+            bestSet = max(dtextlist)
+            print("Is this the decryted text:",bestSet[1])
+            confirm = int(input("1.YES\n2.NO\n"))
+            if confirm == 1:
+                decryptedText = bestSet[1]
                 break
-    print("Not Found")
+    if len(decryptedText) > 0:
+        #print(decryptedText)
+        decryptedText = segment(decryptedText)
+        if "x" in decryptedText[-1]:
+            decryptedText = decryptedText[:-1]
+        print("The decrypted text: "," ".join(decryptedText))
+    else:
+        print("Not Found")
+    print("Total time:",time()-sTime)
+   
 
