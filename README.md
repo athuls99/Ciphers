@@ -23,3 +23,4 @@ https://crypto.stackexchange.com/questions/35722/how-to-find-the-keyword-of-the-
 
 Still have to complete Vigenere without key.
 
+Pushed till wherever I finished in Vigenere.I'll try to get it working asap.
