@@ -78,6 +78,10 @@ def Chk_key(Enc_string,i):
             print("Possible Key:",r)
             print(Decryptor(Enc_string,r))
         n+=1
+        #print("*********************")
+        #print(chiv)
+        #print("*********************")
+
         
             
 #Finding Index of Coincdence
