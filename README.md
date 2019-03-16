@@ -1,23 +1,23 @@
 # Ciphers
 Columnar Transposition Cipher,Hill Cipher,Vigenere Cipher,Payfair Cipher
 
-Columnar Transposition Cipher(Complete)
+Columnar Transposition Cipher(Complete):
 Encryption and Decryption Done
 (With as well as without key)
 
-Vigenere cipher
+Vigenere cipher:
 In Vigenere Cipher Encryption as well as decryption is done.
 With key has been completed.
 Without key yet to be done.
 
-Playfair cipher
+Playfair cipher:
 Playfair cipher complete.(with key)
 Encryption is complete.
 Refer to this video to understand playfair cipher.
 Other places have different implementation So it is advisable to follow this only
 https://www.youtube.com/watch?v=quKhvu2tPy8&t=43s
 
-Hill cipher
+Hill cipher:
 Hill Cipher Encryption complete.
 Decryption also complete.
 Used numpy matmul command to multiply matrices.
