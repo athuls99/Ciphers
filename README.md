@@ -7,8 +7,8 @@ Encryption and Decryption Done
 
 Vigenere cipher
 In Vigenere Cipher Encryption as well as decryption is done.
-That is with key.
-Without Key still has to be done.
+With key has been completed.
+Without key yet to be done.
 
 Playfair cipher
 Playfair cipher complete.(with key)
