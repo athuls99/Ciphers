@@ -1,8 +1,6 @@
 from collections import Counter
 
-#Generates all 26 caesr cipher combinations alphabetically.
-#might contain bugs
-#please check
+#Generates all 26 caeser cipher combinations alphabetically.
 
 def gen_26_combn(enc_string):
     temp=enc_string.upper()
@@ -52,14 +50,12 @@ def chi_sq(enc_s):
         chi_sq.append(((p[i]-(expectedvalues[i.lower()]*tcount))**2)/(expectedvalues[i.lower()]*tcount)**2)
     return sum(chi_sq)
 
-#From here's where I went wrong
-#this function basically takes the appropriate key lengths
+#This function basically takes the appropriate key lengths
 #breaks the string in the similar manner
-#generates all 26 possible caese cipher combinations
+#generates all 26 possible caeser cipher combinations
 #Finds a single alphabet of the key
 
 #This one function has not been implemented properly.
-#If you can help me fix this function then it will work.
 
 def Chk_key(Enc_string,i):
     l=len(Enc_String)
