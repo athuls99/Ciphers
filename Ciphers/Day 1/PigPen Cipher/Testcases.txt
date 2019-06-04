@@ -1,0 +1,17 @@
+Testcase 1
+
+Input:The quick brown fox jumps over 13 lazy dogs.
+
+Output:>|-||=| |.-|<|-|_|._| |_||.-|.=\./|.=| |=|.=.> _.|<=.|-.|\/ |.=/\|=||.- 13 |.__|/.\<. =||.=-|\/.
+
+Tescase 2
+
+Input:Pig Pen
+
+Output:-.||--| -.||=||.=|
+
+Testcase 3
+
+Input:Cryptography is cool.
+
+Output:|_|.-<.-.|>|.=-||.-_|-.||-|<. |-\/ |_|.=|.=|._.
