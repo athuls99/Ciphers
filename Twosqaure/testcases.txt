@@ -1,0 +1,4 @@
+1.key1=example
+key2=keyword
+input=helpmeobiwankenobi
+output=hecmxwsrkyxphwnodg
