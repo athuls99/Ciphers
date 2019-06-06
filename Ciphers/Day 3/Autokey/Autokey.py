@@ -12,21 +12,9 @@ def gen_key(word):
     else:
         nkey=key+word[0:(len(word)-len(key))]
     return nkey
-
-def d_gen_key(word):
-    key=input("Enter the key to be used : ")
-    nkey=""
-    alphabet="".join([chr(i) for i in range(65,92)])
-    if (len(key)==len(word)):
-        return key
-    elif (len(key)>len(word)):
-        return key[0:len(word)]
-    else:
-        
-    return nkey
-    
-    
+     
 def Encryptor(word):
+    word=word.replace(" ","")
     key=gen_key(word)
     key=key.upper()
     word=word.upper()
@@ -37,14 +25,17 @@ def Encryptor(word):
     return eword
 
 def Decryptor(word):
-    key=gen_key(word)
+    #key=gen_key(word)
+    key=input("Enter the key to be used : ")
     key=key.upper()
     word=word.upper()
+    word=word.replace(" ","")
     l=len(key)
-    print(key)
+    w=len(word)
+    #print(key)
     dword=""
     temp=0
-    for i in range(l):
+    for i in range(w):
         temp=ord(word[i])-ord(key[i])
         #dword+=chr((temp+26)%26+65)
         
@@ -52,13 +43,9 @@ def Decryptor(word):
             dword+=chr(temp+65)
         else:
             dword+=chr(91+temp)
+        if (len(key)<len(word)):
+            key+=dword[i]
     return dword
-    
-
-        
-    
-    
-
 
 print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
 ch=int(input("Enter your choice : "))
