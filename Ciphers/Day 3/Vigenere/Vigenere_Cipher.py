@@ -31,10 +31,25 @@ def Decryptor(Encrypted_string,key):
     return dec_string
 
 
-        
+"""      
 plaintext=input("Enter the text to be encrypted:")
 keyword=input("Enter the Key:")
 Encrypted_string=Encryptor(plaintext,keyword)
 Decrypted_string=Decryptor(Encrypted_string,keyword)
 print("Encrypted String is:",Encrypted_string)
 print("Decrypted String is:",Decrypted_string)
+"""
+
+print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
+ch=int(input("Enter your choice : "))
+while (ch):
+    if (ch==1):
+        word=input("Enter the word to be encypted using Vigenere Cipher : ")
+        keyword=input("Enter the Key:")
+        print("Encrypted String is : ",Encryptor(word,keyword))
+    elif (ch==2):
+        word=input("Enter the word to be decypted using Vigenere Cipher : ")
+        keyword=input("Enter the Key:")
+        print("Decrypted String is : ",Decryptor(word,keyword))
+    print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
+    ch=int(input("Enter your choice : "))
