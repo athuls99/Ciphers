@@ -7,7 +7,7 @@ The rail fence cipher works by writing the message on alternate lines across the
 def Encryptor(word,key):
     down=0
     Rf=[[-1 for i in range(len(word))]for j in range(key)]
-    print(Rf)
+    #print(Rf)
     c=0
     r=0
     for i in range(len(word)):
@@ -19,7 +19,7 @@ def Encryptor(word,key):
             r+=1
         else:
             r-=1
-    print(Rf)
+    #print(Rf)
     elist = [] 
     for i in range(key): 
         for j in range(len(word)): 
@@ -65,12 +65,18 @@ def Decryptor(ciphertext,key):
             r += 1
         else: 
             r-= 1
-    return("".join(dlist)) 
-    
-    
+    return("".join(dlist))
 
-Word=input("Enter the word to be Encrypted : ")
-key=int(input("Eter the key to be used : "))
-Res=Encryptor(Word,key)
-print("The Encrypted string is : ",Res)
-print("The Decrypted string is : ",Decryptor(Res,key))
+print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
+ch=int(input("Enter your choice : "))
+while (ch):
+    if (ch==1):
+        word=input("Enter the word to be encypted using Rail-Fence Cipher : ")
+        key=int(input("Enter the key to be used to encrypt: "))
+        print("Encrypted String is : ",Encryptor(word,key))
+    elif (ch==2):
+        word=input("Enter the word to be decypted using Rail-Fence Cipher : ")
+        key=int(input("Enter the key to be used to decrypt: "))
+        print("Decrypted String is : ",Decryptor(word,key))
+    print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
+    ch=int(input("Enter your choice : "))
