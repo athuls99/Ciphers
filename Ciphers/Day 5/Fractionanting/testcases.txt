@@ -1,0 +1,2 @@
+input= hello world
+output=08051212152315181204
