@@ -11,6 +11,14 @@ import numpy as np              # vector calculations
 def getkey(ang):
     return int(ang/14)
 
+def getpoints(ang):
+    x1 = 300
+    y1 = 300
+    rad = ((ang-90)*np.pi)/180
+    x2 = x1 + np.cos(rad)*140
+    y2 = y1 + np.sin(rad)*140
+    return (x2,y2)
+
 def encrypt(text,length,key):
     for i in range(length):
         if text[i].isalpha():
@@ -134,10 +142,13 @@ if __name__ == "__main__":
         img = getimage(image1,angdict['ang'])
         tkimage1 = ImageTk.PhotoImage(img)
         imgobj1 = canvas.create_image(300,300,image=tkimage1)
+        (x,y) = getpoints(angdict['ang'])
+        line = canvas.create_line(300,300,x,y,arrow=LAST)
         canvas.update()
-        key = getkey(angdict['ang'])
+        key = getkey(angdict['ang'])        
         #print("key: ",key," option: ",v.get())
-        update(key)
+        update(key)     # encrypt/decrypt  with key
         canvas.bind("<Button-1>",getangle)
         canvas.delete(imgobj1)
+        canvas.delete(line)
         
