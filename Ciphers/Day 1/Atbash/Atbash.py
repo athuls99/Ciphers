@@ -28,16 +28,15 @@ def Encryptor(word):
     return res
 
 def Decryptor(word):
-    res=""
-    return Encryptor(word)
+  return Encryptor(word)
 
-
-word=input("Enter the word to be encrypted or decrypted : ")
-print("Enter 0 to encrypt and 1 to decrypt")
-a=int(input())
-if a==0:
-  Enc=Encryptor(word)
-  print("Encrypted String is : ",Enc)
-elif a==1:
-  Enc=Encryptor(word)
-  print("Decrypted string is : ",Decryptor(Enc))
+if __name__ == "__main__": 
+  word=input("Enter the word to be encrypted or decrypted : ")
+  print("Enter 0 to encrypt and 1 to decrypt")
+  a=int(input())
+  if a==0:
+    Enc=Encryptor(word)
+    print("Encrypted String is : ",Enc)
+  elif a==1:
+    Enc=Encryptor(word)
+    print("Decrypted string is : ",Decryptor(Enc))
