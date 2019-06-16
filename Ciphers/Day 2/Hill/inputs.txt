@@ -1,2 +1,4 @@
-1. Key: GYBNQKURP   text: ACT
-2. Key: CEFJCBDRH   text: ATTACKATDAWN
+1. Key: GYBNQKURP   text: ACT               enc: POH
+2. Key: CEFJCBDRH   text: ATTACKATDAWN      enc: PFOGOANPGXFX
+3. Key: HILL        text: short example     enc: APADJTFTWLFJ
+4. Key: HILL        text: ACT               enc: QWFX
