@@ -68,27 +68,34 @@ def decrypt(lkey,key,tLen):
             
 
 # exporting functions
-def encryptText():
-    text = input("Enter the text: ")
+def encryptText(text,key):
     text = re.sub(r'[^A-Za-z]',"",text)
-    key = input("Enter the key: ")
-    sTime = time()
     keyList = arrange(text,list(key))
     encryptedText = encrypt(keyList,key)
+    return encryptedText.upper()
+
+def encryptor():
+    text = input("Enter the text: ")
+    key = input("Enter the key: ")
+    sTime = time()
+    encryptedText = encryptText(text,key)
     print("The encrypted text: ", encryptedText)
     print("Total time:",time()-sTime)
 
-def decryptText():
-    text = input("Enter the encrypted text: ")
-    key = input("Enter the key: ")
-    sTime = time()
+def decryptText(text,key):
     keyList = darrange(text,list(key))
     decryptedText = decrypt(keyList,key,len(text))
     decryptedText = segment(decryptedText)
     if "x" in decryptedText[-1]:
         decryptedText = decryptedText[:-1]
-    print("The decrypted text: "," ".join(decryptedText))
-    print("Total time:",time()-sTime)
+    return " ".join(decryptedText).lower()
     
-   
+def decryptor():
+    text = input("Enter the encrypted text: ")
+    key = input("Enter the key: ")
+    sTime = time()
+    decryptedText = decryptText(text,key)
+    print("The decrypted text: ",decryptedText)
+    print("Total time:",time()-sTime)
+
 

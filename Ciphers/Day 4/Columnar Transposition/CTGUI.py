@@ -1,4 +1,4 @@
-from Vigenere_Cipher import Encryptor,Decryptor
+from functions import encryptText,decryptText
 import tkinter as tk
 from tkinter import ttk
 from wordsegment import load,segment
@@ -8,7 +8,7 @@ class Start:
         self.frame = tk.Frame(master,width=700,height=200)
         self.frame.pack(pady=1,padx=10)
         labelA = tk.Label(self.frame,text="Key ",fg="black",font="Arial 15")
-        self.a = tk.Text(self.frame,height=1,width=30,font="Times 14")
+        self.a = tk.Text(self.frame,height=1,width=15,font="Times 15")
         labelA.pack(side=tk.LEFT,padx=5)
         self.a.pack(side=tk.LEFT,padx=1)
 
@@ -37,22 +37,20 @@ class Cipher:
         eframe.pack(expand=1)
         self.dbutton = tk.Button(eframe,text="Decrypt",command=self.dec,font="Arial 18")
         self.dbutton.pack(padx=10,pady=10)
-        self.fbutton = tk.Button(eframe,text="Clear",command=lambda: self.clear(1),font="Arial 18")
-        self.fbutton.pack(padx=10,pady=10)
+        self.dbutton = tk.Button(eframe,text="Clear",command=lambda: self.clear(1),font="Arial 18")
+        self.dbutton.pack(padx=10,pady=10)
     
     def enc(self):
         text = get(self.text)
         key = get(self.k)
-        etext = Encryptor(text,key)
+        etext = encryptText(text,key)
         self.etext.delete("1.0","end")
         self.etext.insert(tk.END,etext)
     
     def dec(self):
         etext = get(self.etext)
         key = get(self.k)
-        text = Decryptor(etext,key.upper())
-        text = segment(text)
-        text = " ".join(text).lower()
+        text = decryptText(etext,key)
         self.text.delete("1.0","end")
         self.text.insert(tk.END,text)
 
@@ -69,7 +67,7 @@ def get(obj):
 if __name__ == "__main__":
     load()
     window = tk.Tk()
-    window.title("Vigenere Cipher")
+    window.title("AutoKey Cipher")
     #window.geometry("700x700")
     sobj = Start(window)
     enc = Cipher(window,sobj)

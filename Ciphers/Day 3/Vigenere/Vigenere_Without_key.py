@@ -4,7 +4,6 @@
 def Encryptor(plain_t,key):
     l=len(key)
     j=0
-    k=0
     enc_string=""
     echar=0
     for i in plain_t:

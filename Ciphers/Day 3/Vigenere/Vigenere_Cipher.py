@@ -21,9 +21,9 @@ def Decryptor(Encrypted_string,key):
     dec_string=""
     dchar=0
     for i in Encrypted_string:
-        if (i.isupper() and key[j].isupper()):
-            dchar=65+(ord(i)-ord(key[j])+26)%26
-        elif (i.islower() and key[j].islower()):
+        if (i.isupper()):
+            dchar=65+((ord(i)-ord(key[j])+26)%26)
+        elif (i.islower()):
             dchar=97+((ord(i)-ord(key[j])+26)%26)
         dec_string+=chr(dchar)
         j=(j+1)%l

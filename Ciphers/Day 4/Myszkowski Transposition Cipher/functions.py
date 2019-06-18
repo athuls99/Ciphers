@@ -37,13 +37,14 @@ def createList(text,key):
     keylen = len(key)
     total = ceil(textlen/keylen)*keylen
     rem = total -textlen
-    textlist = Matrix(int(total/keylen),keylen,list(text)+['x' for i in range(rem)])
+    #textlist = Matrix(int(total/keylen),keylen,[ord(x) for x in text] + [ord('X') for i in range(rem)])
+    textlist = Matrix(int(total/keylen),keylen,list(text) + ['X' for i in range(rem)])
     return textlist
 
 def encryptText(text,key):
     textlist = createList(text,key)
     encText = encrypt(textlist,key)
-    return encText
+    return encText.upper()
 
 def createFList(text,key):
     keycount = Counter(key)
@@ -90,7 +91,7 @@ def decryptText(text,key):
     decText = segment(decText)
     if "x" in decText[-1]:
         decText = decText[:-1]
-    return " ".join(decText)
+    return " ".join(decText).lower()
 
 def encryptor():
     text = input("Enter the plain text: ")
