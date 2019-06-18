@@ -2,8 +2,8 @@
 Autokey Cipher is a polyalphabetic substitution cipher.
 It is similar to Vigenere cipher except for the fact that the key doesn't repeat but the key is extended to the length of the plaintext by using the plaintext itself.
 """
-def gen_key(word):
-    key=input("Enter the key to be used : ")
+def gen_key(word,key):
+    #key=input("Enter the key to be used : ")
     nkey=""
     if (len(key)==len(word)):
         return key
@@ -13,9 +13,9 @@ def gen_key(word):
         nkey=key+word[0:(len(word)-len(key))]
     return nkey
      
-def Encryptor(word):
+def Encryptor(word,key):
     word=word.replace(" ","")
-    key=gen_key(word)
+    key=gen_key(word,key)
     key=key.upper()
     word=word.upper()
     l=len(key)
@@ -24,13 +24,12 @@ def Encryptor(word):
         eword+=chr((ord(key[i])+ord(word[i])-130)%26+65)
     return eword
 
-def Decryptor(word):
+def Decryptor(word,key):
     #key=gen_key(word)
-    key=input("Enter the key to be used : ")
+    #key=input("Enter the key to be used : ")
     key=key.upper()
     word=word.upper()
     word=word.replace(" ","")
-    l=len(key)
     w=len(word)
     #print(key)
     dword=""
@@ -38,26 +37,26 @@ def Decryptor(word):
     for i in range(w):
         temp=ord(word[i])-ord(key[i])
         #dword+=chr((temp+26)%26+65)
-        
         if (temp>=0):
             dword+=chr(temp+65)
         else:
             dword+=chr(91+temp)
         if (len(key)<len(word)):
             key+=dword[i]
-    return dword
-
-print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
-ch=int(input("Enter your choice : "))
-while (ch):
-    if (ch==1):
-        word=input("Enter the word to be encypted using Autokey Cipher : ")
-        print("Encrypted String is : ",Encryptor(word))
-    elif (ch==2):
-        word=input("Enter the word to be decypted using Autokey Cipher : ")
-        print("Decrypted String is : ",Decryptor(word))
+    return dword.lower()
+if __name__ == "__main__":
     print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
     ch=int(input("Enter your choice : "))
+    while (ch):
+        if (ch==1):
+            word=input("Enter the word to be encypted using Autokey Cipher : ")
+            key=input("Enter the key to be used : ")
+            print("Encrypted String is : ",Encryptor(word,key))
+        elif (ch==2):
+            word=input("Enter the word to be decypted using Autokey Cipher : ")
+            print("Decrypted String is : ",Decryptor(word,key))
+        print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
+        ch=int(input("Enter your choice : "))
     
         
 

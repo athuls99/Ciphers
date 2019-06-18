@@ -39,6 +39,7 @@ def get(obj):
 
 if __name__ == "__main__":
     window = tk.Tk()
+    window.title("Atbash Cipher")
     #window.geometry("700x700")
     enc = Cipher(window)
     window.mainloop()
