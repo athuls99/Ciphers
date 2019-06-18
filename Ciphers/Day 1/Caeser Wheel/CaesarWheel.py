@@ -12,6 +12,8 @@ def getkey(ang):
     return int(ang/14)
 
 def getpoints(ang):
+
+    
     x1 = 300
     y1 = 300
     rad = ((ang-90)*np.pi)/180
