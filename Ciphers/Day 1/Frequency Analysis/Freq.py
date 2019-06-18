@@ -1,4 +1,4 @@
-import sys
+
 
 letter_freq = 'etaoinsrhdlucmfywgpbvkxqjz'
 
