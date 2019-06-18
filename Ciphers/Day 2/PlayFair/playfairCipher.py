@@ -1,7 +1,8 @@
-from wordsegment import load,segment;
-load();
+from wordsegment import load,segment
+load()
 #pairing the individual charecters together and storing pairs in messagePair array
-def Pair(messagePair):
+def Pair(message,messagePair):
+        length = len(message)
         i=0
         while(i<length-1):
             if(message[i]!= message[i+1]):
@@ -17,21 +18,22 @@ def Pair(messagePair):
         return messagePair
 #Fill the keyword string frst into the encrypt matrix
 #Sequentially fill all unique remaining characters of the alphabet
-def fill(encrypt,alpha):
-    count =0
-    for i in range(0,5):
-        for j in range(0,5):
-            if((5*i)+j<keyLength):
-                #print(i,j)
-                encrypt[i].append(keyword[(5*i)+j])
-                alpha.remove(keyword[(5*i)+j])
-            else:
-                encrypt[i].append(alpha[count])
-                count+=1
-    return (encrypt,alpha)
+def fill(encrypt,alpha,keyword):
+        keyLength = len(keyword)
+        count =0
+        for i in range(0,5):
+                for j in range(0,5):
+                        if((5*i)+j<keyLength):
+                                #print(i,j)
+                                encrypt[i].append(keyword[(5*i)+j])
+                                alpha.remove(keyword[(5*i)+j])
+                        else:
+                                encrypt[i].append(alpha[count])
+                                count+=1
+        return (encrypt,alpha)
 #getting the x,y coordinates for each charecter in each pair in messagePair array
 #and storing that as a tuple with 4 elements i.e (x1,y1,x2,y2) corresponding to each pair
-def getIndex(index):
+def getIndex(messagePair,encrypt,ind):
     for i in messagePair:
         for j in encrypt:
             if(i[0] in j):
@@ -40,9 +42,10 @@ def getIndex(index):
             if(i[1] in j):
                 temp2y = j.index(i[1])
                 temp2x = encrypt.index(j)
-        index.append((temp1x,temp1y,temp2x,temp2y))
-    return index
-def encryptMessage(encrypt,index,final):
+        ind.append((temp1x,temp1y,temp2x,temp2y))
+    return ind
+def encryptMessage(encrypt,index):
+        final = []
         for val in index:
             #if the two charecters lie on the same row, keep the row same and increment the column by one
             # with wrap around
@@ -72,14 +75,16 @@ def encryptMessage(encrypt,index,final):
                 final.append(encrypt[nextx1][nexty1] + encrypt[nextx2][nexty2])
 
         return final
-def decryptPair(messagePair):
+def decryptPair(message,messagePair):
+        length = len(message)
         i=0
         while(i<length-1):
                 messagePair.append(message[i]+message[i+1])
                 i=i+2
         return messagePair
 
-def decryptMessage(encrypt,index,final):
+def decryptMessage(encrypt,index):
+        final = []
         for val in index:
             #if the two charecters lie on the same row, keep the row same and increment the column by one
             # with wrap around
@@ -120,57 +125,74 @@ def decryptMessage(encrypt,index,final):
 def removeX(final):
         String = "".join(final)
         length = len(String)
-        finalval = [];
-        f=0;
+        finalval = []
+        f=0
         for i in range(0,length):
-                f=0;
+                f=0
                 if(String[i] == "Z"):
                         if((i-1)>=0 and i+1 < length):
                                 if(String[i-1] == String[i+1]):
-                                        f=1;
+                                        f=1
                 if(not f):
                         if(length%2 == 0 and i == length-1 and String[i] == "Z"):
                                 pass
                         else:
                                 finalval.append(String[i])
-        return finalval                
-print("Enter the message")
-message = input()
-message = message.upper()
-message=message.replace(" ","")
-messagePair= []
-length = len(message)
+        return finalval    
 
-print("Enter Keyword(the word should not have a repeated charecter)")
-keyword = input()
-keyword = keyword.upper()
-print("Enter 0 encrypt and 1 to decrypt")
-check = int(input())
-if(check == 0):
-        messagePair = Pair(messagePair)
-else:
-        messagePair = decryptPair(messagePair)
-# J is removed is from the alpha array to keep to length 25 = 5X5  
-alpha = ["A","B","C","D","E","F","G","H","I","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
-alpha.sort()
-#5X5 array
-encrypt = [[],[],[],[],[]]
-keyLength = len(keyword)
-f=0
-Assign = fill(encrypt,alpha)
-encrypt = Assign[0]
-alpha = Assign[1]
-#print(encrypt,alpha,messagePair)
-index = []
-index = getIndex(index)        
-#print(index)
-final = []
-if(check == 0):
-        final = encryptMessage(encrypt,index,final);
-        print("".join(final))
-else:
-        final = decryptMessage(encrypt,index,final);
-        final = removeX(final)
-        final = "".join(final)
-        final = segment(final)
-        print(" ".join(final))
+def preprocess(opt,text,key):
+        text = text.replace(" ","")
+        key = key.replace(" ","")
+        messagePair= []
+        if(opt == 0):
+                messagePair = Pair(text,messagePair)
+        else:
+                messagePair = decryptPair(text,messagePair)
+        alpha = ["A","B","C","D","E","F","G","H","I","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+        alpha.sort()
+        encrypt = [[],[],[],[],[]]
+        (encrypt,alpha) = fill(encrypt,alpha,key)
+        #print(encrypt,alpha,messagePair)
+        ind = []
+        ind = getIndex(messagePair,encrypt,ind)
+        return (encrypt,ind)
+
+if __name__ == "__main__":    
+        print("Enter the message")
+        message = input()
+        message = message.upper()
+        message=message.replace(" ","")
+        messagePair= []
+        length = len(message)
+
+        print("Enter Keyword(the word should not have a repeated charecter)")
+        keyword = input()
+        keyword = keyword.upper()
+        print("Enter 0 encrypt and 1 to decrypt")
+        check = int(input())
+        if(check == 0):
+                messagePair = Pair(message,messagePair)
+        else:
+                messagePair = decryptPair(message,messagePair)
+        # J is removed is from the alpha array to keep to length 25 = 5X5  
+        alpha = ["A","B","C","D","E","F","G","H","I","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+        alpha.sort()
+        #5X5 array
+        encrypt = [[],[],[],[],[]]
+        keyLength = len(keyword)
+        Assign = fill(encrypt,alpha,keyword)
+        encrypt = Assign[0]
+        alpha = Assign[1]
+        #print(encrypt,alpha,messagePair)
+        index = []
+        index = getIndex(messagePair,encrypt,index)        
+        #print(index)
+        if(check == 0):
+                final = encryptMessage(encrypt,index)
+                print("".join(final))
+        else:
+                final = decryptMessage(encrypt,index)
+                final = removeX(final)
+                final = "".join(final)
+                final = segment(final)
+                print(" ".join(final))

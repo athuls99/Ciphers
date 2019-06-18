@@ -4,7 +4,6 @@
 def Encryptor(plain_t,key):
     l=len(key)
     j=0
-    k=0
     enc_string=""
     echar=0
     for i in plain_t:
@@ -14,7 +13,7 @@ def Encryptor(plain_t,key):
             echar=97+((ord(i)+ord(key[j]))%26)
         enc_string+=chr(echar)
         j=(j+1)%l
-    return enc_string
+    return enc_string.upper()
 
 def Decryptor(Encrypted_string,key):
     l=len(key)
@@ -28,7 +27,7 @@ def Decryptor(Encrypted_string,key):
             dchar=97+((ord(i)-ord(key[j])+26)%26)
         dec_string+=chr(dchar)
         j=(j+1)%l
-    return dec_string
+    return dec_string.lower()
 
 
 """      
@@ -39,17 +38,17 @@ Decrypted_string=Decryptor(Encrypted_string,keyword)
 print("Encrypted String is:",Encrypted_string)
 print("Decrypted String is:",Decrypted_string)
 """
-
-print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
-ch=int(input("Enter your choice : "))
-while (ch):
-    if (ch==1):
-        word=input("Enter the word to be encypted using Vigenere Cipher : ")
-        keyword=input("Enter the Key:")
-        print("Encrypted String is : ",Encryptor(word,keyword))
-    elif (ch==2):
-        word=input("Enter the word to be decypted using Vigenere Cipher : ")
-        keyword=input("Enter the Key:")
-        print("Decrypted String is : ",Decryptor(word,keyword))
+if __name__ == "__main__":
     print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
     ch=int(input("Enter your choice : "))
+    while (ch):
+        if (ch==1):
+            word=input("Enter the word to be encypted using Vigenere Cipher : ")
+            keyword=input("Enter the Key:")
+            print("Encrypted String is : ",Encryptor(word,keyword))
+        elif (ch==2):
+            word=input("Enter the word to be decypted using Vigenere Cipher : ")
+            keyword=input("Enter the Key:")
+            print("Decrypted String is : ",Decryptor(word,keyword))
+        print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
+        ch=int(input("Enter your choice : "))
