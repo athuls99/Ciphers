@@ -1,0 +1,21 @@
+
+ISHAR
+
+-Keyword Substitiution
+-Affine without key
+
+
+Gaurav
+-Hill Cipher
+-Gui
+-Caeser wheel color/legend
+
+
+Athul
+
+-2 and 4 square
+
+
+Siva
+-Pig Pen Cipher
+-Vigenere(kaisiki Anakysis)
