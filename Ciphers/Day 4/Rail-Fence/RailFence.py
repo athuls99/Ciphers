@@ -67,16 +67,17 @@ def Decryptor(ciphertext,key):
             r-= 1
     return("".join(dlist))
 
-print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
-ch=int(input("Enter your choice : "))
-while (ch):
-    if (ch==1):
-        word=input("Enter the word to be encypted using Rail-Fence Cipher : ")
-        key=int(input("Enter the key to be used to encrypt: "))
-        print("Encrypted String is : ",Encryptor(word,key))
-    elif (ch==2):
-        word=input("Enter the word to be decypted using Rail-Fence Cipher : ")
-        key=int(input("Enter the key to be used to decrypt: "))
-        print("Decrypted String is : ",Decryptor(word,key))
+if __name__ == "__main__":  
     print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
     ch=int(input("Enter your choice : "))
+    while (ch):
+        if (ch==1):
+            word=input("Enter the word to be encypted using Rail-Fence Cipher : ")
+            key=int(input("Enter the key to be used to encrypt: "))
+            print("Encrypted String is : ",Encryptor(word,key))
+        elif (ch==2):
+            word=input("Enter the word to be decypted using Rail-Fence Cipher : ")
+            key=int(input("Enter the key to be used to decrypt: "))
+            print("Decrypted String is : ",Decryptor(word,key))
+        print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
+        ch=int(input("Enter your choice : "))
