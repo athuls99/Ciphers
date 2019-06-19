@@ -66,12 +66,8 @@ def Decryptor(ciphertext,key):
         else: 
             r-= 1
     return("".join(dlist))
-<<<<<<< HEAD:Ciphers/Day 4/Rail-Fence/RailFence.py
+    
 if __name__ == "__main__":
-=======
-
-if __name__ == "__main__":  
->>>>>>> 59d4a7a9cd886625149d20ddd3cff28d943fc0cd:Ciphers/Day 4/Rail-Fence/RailFence.py
     print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
     ch=int(input("Enter your choice : "))
     while (ch):
