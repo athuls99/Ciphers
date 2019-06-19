@@ -1,5 +1,4 @@
 
-#Assuming the Key as well as the plaintext are of the same case
 
 def Encryptor(plain_t,key):
     l=len(key)
@@ -15,28 +14,25 @@ def Encryptor(plain_t,key):
         j=(j+1)%l
     return enc_string.upper()
 
-def Decryptor(Encrypted_string,key):
-    l=len(key)
-    j=0
-    dec_string=""
-    dchar=0
-    Encrypted_string=Encrypted_string.upper()
-    Encrypted_string=Encrypted_string.replace(" ","")
-    for i in Encrypted_string:
-        dchar=65+((ord(i)-ord(key[j])+26)%26)
-        dec_string+=chr(dchar)
-        j=(j+1)%l
-    return dec_string.lower()
+def generateKey(string, key): 
+    key = list(key) 
+    if len(string) == len(key): 
+        return(key) 
+    else: 
+        for i in range(len(string) - 
+                       len(key)): 
+            key.append(key[i % len(key)]) 
+    return("" . join(key)) 
+    
+def Decryptor(cipher_text, key): 
+    orig_text = [] 
+    for i in range(len(cipher_text)): 
+        x = (ord(cipher_text[i]) - 
+             ord(key[i]) + 26) % 26
+        x += ord('A') 
+        orig_text.append(chr(x)) 
+    return("" . join(orig_text))
 
-
-"""      
-plaintext=input("Enter the text to be encrypted:")
-keyword=input("Enter the Key:")
-Encrypted_string=Encryptor(plaintext,keyword)
-Decrypted_string=Decryptor(Encrypted_string,keyword)
-print("Encrypted String is:",Encrypted_string)
-print("Decrypted String is:",Decrypted_string)
-"""
 if __name__ == "__main__":
     print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
     ch=int(input("Enter your choice : "))
