@@ -70,7 +70,7 @@ def get(obj):
 if __name__ == "__main__":
     load()
     window = tk.Tk()
-    window.title("Polybius Cipher")
+    window.title("Keyword Cipher")
     #window.geometry("700x700")
     sobj = Start(window)
     enc = Cipher(window,sobj)

@@ -1,6 +1,7 @@
 from functions import textEncDec,isPerfect,createMatrix,checkKey
 import tkinter as tk
 from tkinter import ttk
+from wordsegment import load,segment
 
 class Start:
     def __init__(self,master):
@@ -45,8 +46,9 @@ class Cipher:
         if chk:
             etext = get(self.etext)
             text = textEncDec(etext.upper(),chk,1)
+            text = segment(text)
             self.text.delete("1.0","end")
-            self.text.insert(tk.END,text)
+            self.text.insert(tk.END,"".join(text))
 
     def popup(self):
         popup = tk.Tk()
@@ -77,6 +79,7 @@ def get(obj):
     return obj.get("1.0","end").strip()
 
 if __name__ == "__main__":
+    load()
     window = tk.Tk()
     window.title("Hill Cipher")
     #window.geometry("700x700")
