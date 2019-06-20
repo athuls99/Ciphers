@@ -66,8 +66,8 @@ def Decryptor(ciphertext,key):
         else: 
             r-= 1
     return("".join(dlist))
-
-if __name__ == "__main__":  
+    
+if __name__ == "__main__":
     print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
     ch=int(input("Enter your choice : "))
     while (ch):
