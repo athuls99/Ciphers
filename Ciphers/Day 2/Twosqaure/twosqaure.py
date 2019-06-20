@@ -56,7 +56,7 @@ def find_position(key_matrix,letter):
 
     return x,y
 
-def encrypt(message):
+def encrypt(message,key1,key2):
     message1=message_to_digraphs(message)
     key_matrix1=matrix(key1)
     key_matrix2=matrix(key2)
@@ -70,7 +70,7 @@ def encrypt(message):
         else:
           cipher.append(key_matrix1[p1][q2])
           cipher.append(key_matrix2[p2][q1])
-    return cipher
+    return "".join(cipher)
 
 def cipher_to_digraphs(cipher):
     i=0
@@ -81,7 +81,7 @@ def cipher_to_digraphs(cipher):
     return new
 
 
-def decrypt(cipher):    
+def decrypt(cipher,key1,key2):    
     cipher=cipher_to_digraphs(cipher)
     key_matrix1=matrix(key1)
     key_matrix2=matrix(key2)
@@ -113,29 +113,30 @@ def decrypt(cipher):
 #message="Hide the gold in the tree stump"
 #>>BMODZBXDNABEKUDMUIXMMOUVIF
 
-
-
-order=int(input("Choose :\n1,Encrypting \n2,Decrypting\n"))
-if order==1:
-    key1=input("Please input key 1: ")
-    key2=input("Please input key 2: ")
-    message=input("Please input the message (only from A-Z): ")
-    print ("Encrypting: \n"+"Message: "+message)
-    print ("Break the message into digraphs: ")
-    print (message_to_digraphs(message))
-    print ("Matrix 1: ")
-    print (matrix(key1))
-    print ("Matrix 2: ")
-    print (matrix(key2))
-    print ("Cipher: ") 
-    print (encrypt(message))
-elif order==2:
-    key1=input("Please input key 1 : ")
-    key2=input("Please input key 2 : ")
-    cipher=input("Please input the cipher text: (only from A-Z)")
-    #cipher="ILSYQFBWBMLIAFFQ"
-    print ("\nDecrypting: \n"+"Cipher: "+cipher)
-    print ("Plaintext:")
-    print (decrypt(cipher))
-else:
-    print ("Error")
+if __name__ == "__main__":
+    order=int(input("Choose :\n1,Encrypting \n2,Decrypting\n"))
+    if order==1:
+        key1=input("Please input key 1: ")
+        key2=input("Please input key 2: ")
+        message=input("Please input the message (only from A-Z): ")
+        #print ("Encrypting: \n"+"Message: "+message)
+        #print ("Break the message into digraphs: ")
+        #print (message_to_digraphs(message))
+        #print ("Matrix 1: ")
+        #print (matrix(key1))
+        #print ("Matrix 2: ")
+        #print (matrix(key2))
+        print ("Cipher: ") 
+        text = encrypt(message.upper(),key1,key2)
+        print(text)
+    elif order==2:
+        key1=input("Please input key 1 : ")
+        key2=input("Please input key 2 : ")
+        cipher=input("Please input the cipher text: (only from A-Z)")
+        #cipher="ILSYQFBWBMLIAFFQ"
+        print ("\nDecrypting: \n"+"Cipher: "+cipher)
+        print ("Plaintext:")
+        text = decrypt(cipher,key1,key2)
+        print(text)
+    else:
+        print ("Error")
