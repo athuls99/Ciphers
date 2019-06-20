@@ -9,19 +9,26 @@ def encrypt(text):
     for i in range(len(wordArr)):
         wordArr[i] = wordArr[i][::-1]
     entext=(" ").join(wordArr)
-    print("THE ENCRYPTED TEXT IS")
-    print(entext)
+    return entext
+    
+
 def decrypt(text):
     wordArr = text.split(" ")
     for i in range(len(wordArr)):
         wordArr[i] = wordArr[i][::-1]
     entext=(" ").join(wordArr)
-    print("THE DECRYPTED TEXT IS")
-    print(entext)
-n=int(input("ENTER 0 TO ENCRYPT OR 1 TO DECRYPT\n"))
-if(not n):
-    text=input("ENTER THE PLAIN TEXT\n")
-    encrypt(text)
-else:
-    text= input("ENTER THE ENCRYPTED TEXT\n")
-    decrypt(text)
+    return entext
+    
+
+if __name__ == "__main__":
+    n=int(input("ENTER 0 TO ENCRYPT OR 1 TO DECRYPT\n"))
+    if(not n):
+        text=input("ENTER THE PLAIN TEXT\n")
+        entext = encrypt(text)
+        print("THE ENCRYPTED TEXT IS")
+        print(entext)
+    else:
+        text= input("ENTER THE ENCRYPTED TEXT\n")
+        entext = decrypt(text)
+        print("THE DECRYPTED TEXT IS")
+        print(entext)
