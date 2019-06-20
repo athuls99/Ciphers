@@ -16,13 +16,13 @@ def encrypt(text,key):
     for i in sorted(set(key)):
         if keycount[i] == 1:
             ind = key.index(i)
-            encText += "".join([str(x) for x in text[:,ind]])
+            encText += "".join([chr(x) for x in text[:,ind]])
         else:
             start = 0
             li = []
             for k in range(keycount[i]):
                 ind = key.index(i,start)
-                j = [str(x) for x in text[:,ind]]
+                j = [chr(x) for x in text[:,ind]]
                 li.append(j)
                 start = ind + 1
             for k in range(len(li[0])):
@@ -37,11 +37,12 @@ def createList(text,key):
     keylen = len(key)
     total = ceil(textlen/keylen)*keylen
     rem = total -textlen
-    #textlist = Matrix(int(total/keylen),keylen,[ord(x) for x in text] + [ord('X') for i in range(rem)])
-    textlist = Matrix(int(total/keylen),keylen,list(text) + ['X' for i in range(rem)])
+    textlist = Matrix(int(total/keylen),keylen,[ord(x) for x in text] + [ord('X') for i in range(rem)])
+    #textlist = Matrix(int(total/keylen),keylen,list(text) + ['X' for i in range(rem)])
     return textlist
 
 def encryptText(text,key):
+    text = re.sub(r'[^A-Za-z]',"",text)
     textlist = createList(text,key)
     encText = encrypt(textlist,key)
     return encText.upper()
@@ -95,7 +96,6 @@ def decryptText(text,key):
 
 def encryptor():
     text = input("Enter the plain text: ")
-    text = re.sub(r'[^A-Za-z]',"",text)
     key = input("Enter the key: ")
     encText = encryptText(text.upper(),key)
     print("The encrypted text: ",encText)
