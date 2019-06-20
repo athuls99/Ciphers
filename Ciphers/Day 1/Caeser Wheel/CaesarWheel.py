@@ -12,8 +12,6 @@ def getkey(ang):
     return int(ang/14)
 
 def getpoints(ang):
-
-    
     x1 = 300
     y1 = 300
     rad = ((ang-90)*np.pi)/180
@@ -47,16 +45,23 @@ def decrypt(text,length,key):
     return "".join(text)
     
 def update(key):
-    text = textentry.get("1.0","end")
-    text = list(text)
-    length = len(text)
+    
     val = v.get()
     if val == 0:
+        text = textentry.get("1.0","end")
+        text = list(text)
+        length = len(text)
         text = encrypt(text,length,key)
+        disp.delete("1.0","end")
+        disp.insert(END,text)
     elif val == 1:
+        text = disp.get("1.0","end")
+        text = list(text)
+        length = len(text)
         text = decrypt(text,length,key)
-    disp.delete("1.0","end")
-    disp.insert(END,text)
+        textentry.delete("1.0","end")
+        textentry.insert(END,text)
+    
 
 def getimage(image,ang):
     if ang == 0:
@@ -121,6 +126,12 @@ if __name__ == "__main__":
     canvas = Canvas(iframe,width=600,height=600)
     tk.title("Caesar's Wheel")
     canvas.pack()
+
+    # labels
+    canvas.create_text(290,220,fill="darkblue",font="Times 15",
+                       text = "Inner Circle: Plain Text")
+    canvas.create_text(120,10,fill="darkblue",font="Times 15",
+                       text = "Outer Circle: Cipher Text")
 
     # setting the end message
     displabel = Label(frame,
