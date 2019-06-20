@@ -24,7 +24,7 @@ def matrix(key):
     return matrix_group
 
 def encrypt(table, message):
-    string = table
+    #string = table
     cipher = ''
     """for unused in range(len(message)):
         if " " in message:
@@ -47,21 +47,21 @@ def decrypt(table, numbers):
     return text
 
 
-
-order=int(input("Choose :\n1,Encrypting \n2,Decrypting\n"))
-if order==1:
-    key=input("Please input key :")
-    message=input("Please input the message (only from A-Z): ")
-    print ("Matrix : ")
-    print (matrix(key))
-    matrix=matrix(key)
-    print ("Cipher: ") 
-    print (encrypt(matrix,message))
-elif order==2:
-    key=input("Please input key  : ")
-    matrix=matrix(key)
-    cipher=input("Please input the cipher text: (only from A-Z)")
-    print ("Plaintext:")
-    print (decrypt(matrix,cipher))
-else:
-    print ("Error")
+if __name__ == "__main__":
+    order=int(input("Choose :\n1,Encrypting \n2,Decrypting\n"))
+    if order==1:
+        key=input("Please input key :")
+        message=input("Please input the message (only from A-Z): ")
+        print ("Matrix : ")
+        print (matrix(key))
+        matrix=matrix(key)
+        print ("Cipher: ") 
+        print (encrypt(matrix,message))
+    elif order==2:
+        key=input("Please input key  : ")
+        matrix=matrix(key)
+        cipher=input("Please input the cipher text: (only from A-Z)")
+        print ("Plaintext:")
+        print (decrypt(matrix,cipher))
+    else:
+        print ("Error")
