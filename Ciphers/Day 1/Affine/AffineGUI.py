@@ -22,20 +22,20 @@ class Cipher:
         self.msg = ""
 
         # for encrypt
-        self.frame = tk.Frame(master,width=650,height=200,bd=1,relief=tk.RAISED)
-        self.frame.pack(pady=25,padx=10,fill=tk.X)
-        self.text = tk.Text(self.frame,height=5,width=50,fg="black",font="Times 15")
-        self.text.pack(side=tk.LEFT,padx=10,pady=15)
+        self.frame = tk.Frame(master,bd=1,relief=tk.RAISED)
+        self.frame.pack(side=tk.LEFT,pady=25,padx=10,fill=tk.X)
+        self.text = tk.Text(self.frame,height=20,width=65,fg="black",font="Times 15")
+        self.text.pack(padx=10,pady=15)
         self.ebutton = tk.Button(self.frame,text="Encrypt",command=self.enc,font="Arial 20")
-        self.ebutton.pack(padx=10,pady=70)
+        self.ebutton.pack(padx=10)
 
         # for decrypt
-        self.frame = tk.Frame(master,width=650,height=200,bd=1,relief=tk.RAISED)
-        self.frame.pack(pady=5,padx=10,fill=tk.X)
-        self.etext = tk.Text(self.frame,height=5,width=50,fg="black",font="Times 15")
-        self.etext.pack(side=tk.LEFT,padx=10,pady=15)
+        self.frame = tk.Frame(master,bd=1,relief=tk.RAISED)
+        self.frame.pack(expand=1,pady=5,padx=10,fill=tk.X)
+        self.etext = tk.Text(self.frame,height=20,width=65,fg="black",font="Times 15")
+        self.etext.pack(padx=10,pady=1)
         self.dbutton = tk.Button(self.frame,text="Decrypt",command=self.dec,font="Arial 20")
-        self.dbutton.pack(padx=10,pady=70)
+        self.dbutton.pack(padx=10)
     
     def enc(self):
         chk = self.check()
