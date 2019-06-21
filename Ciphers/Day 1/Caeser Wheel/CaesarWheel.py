@@ -105,7 +105,7 @@ if __name__ == "__main__":
                  font='Times 15',
                  bg='white')
     text.pack(fill=X,expand=1,pady=1,padx=100)
-    textentry = Text(frame,height=1,width=70,font='Times 15')
+    textentry = Text(frame,height=5,width=70,font='Times 15')
     textentry.pack(expand=1,padx=100)
 
     # set up frame to hold options

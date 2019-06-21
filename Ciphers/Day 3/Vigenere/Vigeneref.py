@@ -1,4 +1,10 @@
 
+def preprocess(encryptedtext):
+    #encryptedtext.replace(" ","")
+    #encryptedtext=encryptedtext.replace("\n","")
+    encryptedtext=''.join([e for e in encryptedtext if e.isalpha()])
+    encryptedtext=encryptedtext.upper()
+    return encryptedtext
 
 def Encryptor(plain_t,key):
     l=len(key)
@@ -25,10 +31,10 @@ def generateKey(string, key):
     return("" . join(key)) 
     
 def Decryptor(cipher_text, key): 
+    key=generateKey(cipher_text,key)
     orig_text = [] 
     for i in range(len(cipher_text)): 
-        x = (ord(cipher_text[i]) - 
-             ord(key[i]) + 26) % 26
+        x = (ord(cipher_text[i]) - ord(key[i]) + 26) % 26
         x += ord('A') 
         orig_text.append(chr(x)) 
     return("" . join(orig_text))
@@ -40,10 +46,14 @@ if __name__ == "__main__":
         if (ch==1):
             word=input("Enter the word to be encypted using Vigenere Cipher : ")
             keyword=input("Enter the Key:")
+            word=preprocess(word)
+            keyword=keyword.upper()
             print("Encrypted String is : ",Encryptor(word,keyword))
         elif (ch==2):
             word=input("Enter the word to be decypted using Vigenere Cipher : ")
             keyword=input("Enter the Key:")
+            word=preprocess(word)
+            keyword=keyword.upper()
             print("Decrypted String is : ",Decryptor(word,keyword))
         print(" 1.Encrypt\n 2.Decrypt\n 0.Exit")
         ch=int(input("Enter your choice : "))
