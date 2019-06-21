@@ -2,6 +2,7 @@ from foursqaure import encrypt,decrypt,gen_matrix,get_key
 import tkinter as tk
 from tkinter import ttk
 from wordsegment import load,segment
+import re
 
 class Start:
     def __init__(self,master):
@@ -22,50 +23,55 @@ class Cipher:
         self.k2 = obj.b
 
         # for encrypt
-        self.frame = tk.Frame(master,width=650,height=200,bd=1,relief=tk.RAISED)
-        self.frame.pack(pady=25,padx=10,fill=tk.X)
-        self.text = tk.Text(self.frame,height=4,width=50,fg="black",font="Times 15")
-        self.text.pack(side=tk.LEFT,padx=10,pady=15)
+        self.frame = tk.Frame(master,bd=1,relief=tk.RAISED)
+        self.frame.pack(expand=1,side=tk.LEFT,pady=5,padx=10,fill=tk.X)
         iframe = tk.Frame(self.frame)
         iframe.pack(expand=1)
-        self.ebutton = tk.Button(iframe,text="Encrypt",command=self.enc,font="Arial 18")
-        self.ebutton.pack(padx=10,pady=10)
-        self.ebutton = tk.Button(iframe,text="Clear",command=lambda: self.clear(0),font="Arial 18")
-        self.ebutton.pack(padx=10,pady=10)
+        label = tk.Label(iframe,text="Plain text",font="Times 20 bold")
+        label.pack(padx=10)
+        self.ebutton = tk.Button(iframe,text="Encrypt",command=self.enc,font="Arial 15")
+        self.ebutton.pack(side=tk.LEFT,padx=10)
+        self.ebutton = tk.Button(iframe,text="Clear",command=lambda: self.clear(0),font="Arial 15")
+        self.ebutton.pack(padx=10)
+        self.text = tk.Text(self.frame,height=40,width=50,fg="black",font="Times 15")
+        self.text.pack(padx=10,pady=1)
 
         # for the squares
         self.frame = tk.Frame(master,width=650)
-        self.frame.pack(pady=1,padx=10,fill=tk.X)
+        self.frame.pack(side=tk.LEFT,pady=1,padx=10,fill=tk.X)
         # first row
         iframe = tk.Frame(self.frame)
         iframe.pack(expand=1,padx=10,fill=tk.X)
         self.topLeft = tk.Text(iframe,height=5,width=11,fg="black",font="Times 15")
-        self.topLeft.pack(side=tk.LEFT,padx=100,pady=10)
+        self.topLeft.pack(side=tk.LEFT,padx=5,pady=10)
         self.topRight = tk.Text(iframe,height=5,width=11,fg="black",font="Times 15")
-        self.topRight.pack(side=tk.LEFT,padx=100,pady=10)
+        self.topRight.pack(side=tk.LEFT,padx=5,pady=10)
         # second row
         iframe = tk.Frame(self.frame)
         iframe.pack(expand=1,padx=10,fill=tk.X)
         self.botLeft = tk.Text(iframe,height=5,width=11,fg="black",font="Times 15")
-        self.botLeft.pack(side=tk.LEFT,padx=100,pady=10)
+        self.botLeft.pack(side=tk.LEFT,padx=5,pady=10)
         self.botRight = tk.Text(iframe,height=5,width=11,fg="black",font="Times 15")
-        self.botRight.pack(side=tk.LEFT,padx=100,pady=10)
+        self.botRight.pack(side=tk.LEFT,padx=5,pady=10)
 
 
         # for decrypt
-        self.frame = tk.Frame(master,width=650,height=200,bd=1,relief=tk.RAISED)
-        self.frame.pack(pady=5,padx=10,fill=tk.X)
-        self.etext = tk.Text(self.frame,height=4,width=50,fg="black",font="Times 15")
-        self.etext.pack(side=tk.LEFT,padx=10,pady=15)
+        self.frame = tk.Frame(master,bd=1,relief=tk.RAISED)
+        self.frame.pack(expand=1,pady=5,padx=10,fill=tk.X)
         eframe = tk.Frame(self.frame)
         eframe.pack(expand=1)
-        self.dbutton = tk.Button(eframe,text="Decrypt",command=self.dec,font="Arial 18")
-        self.dbutton.pack(padx=10,pady=10)
-        self.dbutton = tk.Button(eframe,text="Clear",command=lambda: self.clear(1),font="Arial 18")
-        self.dbutton.pack(padx=10,pady=10)
+        label = tk.Label(eframe,text="Cipher text",font="Times 20 bold")
+        label.pack(padx=10)
+        self.dbutton = tk.Button(eframe,text="Decrypt",command=self.dec,font="Arial 15")
+        self.dbutton.pack(side=tk.LEFT,padx=10)
+        self.dbutton = tk.Button(eframe,text="Clear",command=lambda: self.clear(1),font="Arial 15")
+        self.dbutton.pack(padx=10)
+        self.etext = tk.Text(self.frame,height=40,width=50,fg="black",font="Times 15")
+        self.etext.pack(padx=10,pady=1)
     
     def enc(self):
         text = get(self.text).upper()
+        text = re.sub(r'[^A-Za-z]',"",text)
         key1 = get(self.k1).upper()
         key2 = get(self.k2).upper()
         self.sett(text,key1,key2)
@@ -75,6 +81,7 @@ class Cipher:
     
     def dec(self):
         etext = get(self.etext).upper()
+        etext = re.sub(r'[^A-Za-z]',"",etext)
         key1 = get(self.k1).upper()
         key2 = get(self.k2).upper()
         self.sett(etext,key1,key2)
