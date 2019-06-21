@@ -1,7 +1,6 @@
-from KeyWordSub import encrypt,decrypt,preProcess
+from Vigeneref import Encryptor, Decryptor
 import tkinter as tk
 from tkinter import ttk
-from wordsegment import load,segment
 
 class Start:
     def __init__(self,master):
@@ -44,38 +43,34 @@ class Cipher:
         self.dbutton.pack(padx=10)
         self.etext = tk.Text(self.frame,height=40,width=65,fg="black",font="Times 15")
         self.etext.pack(padx=10,pady=1)
+        
     
     def enc(self):
         text = get(self.text)
         key = get(self.k)
-        (key,alpha) = preProcess(key.lower())
-        etext = encrypt(text,key,alpha)
+        etext = Encryptor(text.upper(),key)
         self.etext.delete("1.0","end")
-        self.etext.insert(tk.END,etext)
+        self.etext.insert(tk.END,etext.upper())
     
     def dec(self):
-        etext = get(self.etext).lower()
+        etext = get(self.etext)
         key = get(self.k)
-        (key,alpha) = preProcess(key.lower())
-        text = decrypt(etext,key,alpha)
-        text = segment(text)
+        text = Decryptor(etext.upper(),key)
         self.text.delete("1.0","end")
-        self.text.insert(tk.END," ".join(text).lower())
+        self.text.insert(tk.END,text.lower())
 
     def clear(self,opt):
         if opt == 0:
             self.text.delete("1.0","end")
         else:
             self.etext.delete("1.0","end")
-        
 
 def get(obj):
     return obj.get("1.0","end").strip()
 
 if __name__ == "__main__":
-    load()
     window = tk.Tk()
-    window.title("Keyword Cipher")
+    window.title("Affine Cipher")
     #window.geometry("700x700")
     sobj = Start(window)
     enc = Cipher(window,sobj)
