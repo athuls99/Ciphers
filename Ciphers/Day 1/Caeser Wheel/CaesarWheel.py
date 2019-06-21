@@ -118,9 +118,25 @@ if __name__ == "__main__":
                  fg='black',
                  font='Times 15',
                  bg='white')
+<<<<<<< HEAD
+    text.pack(fill=X,expand=1,pady=1,padx=100)
+    textentry = Text(frame,height=5,width=70,font='Times 15')
+    textentry.pack(expand=1,padx=100)
+
+    # set up frame to hold options
+    rframe = Frame(frame)
+    rframe.pack(expand=1,fill=X,pady=1,padx=100)
+    
+    # setting the radio options
+    r1 = Radiobutton(rframe,text="Encrypt",padx=20,variable=v, value=0)
+    r1.pack(side=LEFT)
+    r2 = Radiobutton(rframe,text="Decrypt",padx=40,variable=v, value=1)
+    r2.pack()
+=======
     text.pack(fill=X,expand=1,pady=1,padx=10)
     textentry = Text(rframe,height=40,width=35,font='Times 15')
     textentry.pack(expand=1,padx=1)  
+>>>>>>> 7d6017a30219efebfb99ae829837580842342f45
     
     # Frame to hold the canvas
     iframe = Frame(frame,bd=2,relief=RAISED)
