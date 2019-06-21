@@ -36,7 +36,7 @@ class Cipher:
         text = get(self.text)
         etext = hackVigenere(text.upper())
         self.etext.delete("1.0","end")
-        self.etext.insert(tk.END,text.lower())
+        self.etext.insert(tk.END,etext.lower())
 
     def clear(self,opt):
         if opt == 0:
