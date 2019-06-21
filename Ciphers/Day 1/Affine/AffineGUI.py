@@ -1,6 +1,8 @@
 from AffineCipher import encrypt,decrypt,gcd
 import tkinter as tk
 from tkinter import ttk
+from wordsegment import load,segment
+import re
 
 class Start:
     def __init__(self,master):
@@ -55,6 +57,7 @@ class Cipher:
         chk = self.check()
         if type(chk) == tuple:
             text = get(self.text)
+            text = re.sub(r'[^A-Za-z]',"",text)
             etext = encrypt(text.upper(),chk[0],chk[1])
             self.etext.delete("1.0","end")
             self.etext.insert(tk.END,etext)
@@ -63,7 +66,9 @@ class Cipher:
         chk = self.check()
         if type(chk) == tuple:
             etext = get(self.etext)
+            etext = re.sub(r'[^A-Za-z]',"",etext)
             text = decrypt(etext.upper(),chk[0],chk[1])
+            text = " ".join(segment(text))
             self.text.delete("1.0","end")
             self.text.insert(tk.END,text.lower())
 
@@ -95,6 +100,7 @@ def get(obj):
     return obj.get("1.0","end").strip()
 
 if __name__ == "__main__":
+    load()
     window = tk.Tk()
     window.title("Affine Cipher")
     #window.geometry("700x700")

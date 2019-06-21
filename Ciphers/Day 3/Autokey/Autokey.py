@@ -2,6 +2,7 @@
 Autokey Cipher is a polyalphabetic substitution cipher.
 It is similar to Vigenere cipher except for the fact that the key doesn't repeat but the key is extended to the length of the plaintext by using the plaintext itself.
 """
+import re
 def gen_key(word,key):
     #key=input("Enter the key to be used : ")
     nkey=""
@@ -14,7 +15,7 @@ def gen_key(word,key):
     return nkey
      
 def Encryptor(word,key):
-    word=word.replace(" ","")
+    word=re.sub(r'[^A-Za-z]',"",word)
     key=gen_key(word,key)
     key=key.upper()
     word=word.upper()
@@ -29,7 +30,7 @@ def Decryptor(word,key):
     #key=input("Enter the key to be used : ")
     key=key.upper()
     word=word.upper()
-    word=word.replace(" ","")
+    word=re.sub(r'[^A-Za-z]',"",word)
     w=len(word)
     #print(key)
     dword=""

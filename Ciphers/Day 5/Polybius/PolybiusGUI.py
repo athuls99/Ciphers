@@ -8,7 +8,7 @@ class Start:
         self.frame = tk.Frame(master,width=700,height=200)
         self.frame.pack(pady=1,padx=10)
         labelA = tk.Label(self.frame,text="Key ",fg="black",font="Arial 15")
-        self.a = tk.Text(self.frame,height=1,width=15,font="Times 15")
+        self.a = tk.Text(self.frame,height=1,width=35,font="Times 15")
         labelA.pack(side=tk.LEFT,padx=5)
         self.a.pack(side=tk.LEFT,padx=1)
 

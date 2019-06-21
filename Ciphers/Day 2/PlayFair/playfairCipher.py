@@ -1,4 +1,5 @@
 from wordsegment import load,segment
+import re
 load()
 #pairing the individual charecters together and storing pairs in messagePair array
 def Pair(message,messagePair):
@@ -141,7 +142,7 @@ def removeX(final):
         return finalval    
 
 def preprocess(opt,text,key):
-        text = text.replace(" ","")
+        text = re.sub(r'[^A-Za-z]',"",text)
         key = key.replace(" ","")
         messagePair= []
         if(opt == 0):

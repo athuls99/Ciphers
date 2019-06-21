@@ -61,7 +61,7 @@ class Cipher:
             text = textEncDec(etext.upper(),chk,1)
             text = segment(text)
             self.text.delete("1.0","end")
-            self.text.insert(tk.END,"".join(text))
+            self.text.insert(tk.END," ".join(text))
 
     def clear(self,opt):
         if opt == 0:

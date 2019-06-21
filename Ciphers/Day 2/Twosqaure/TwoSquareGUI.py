@@ -2,6 +2,7 @@ from twosqaure import encrypt,decrypt,matrix
 import tkinter as tk
 from tkinter import ttk
 from wordsegment import load,segment
+import re
 
 class Start:
     def __init__(self,master):
@@ -39,10 +40,10 @@ class Cipher:
         self.frame = tk.Frame(master,width=650)
         self.frame.pack(side=tk.LEFT,pady=1,padx=10,fill=tk.X)
         # first row
-        self.top = tk.Text(self.frame,height=5,width=11,fg="black",font="Times 15")
+        self.top = tk.Text(self.frame,height=5,width=11,fg="black",font="Times 20")
         self.top.pack(padx=5,pady=10)
         # second row
-        self.bot = tk.Text(self.frame,height=5,width=11,fg="black",font="Times 15")
+        self.bot = tk.Text(self.frame,height=5,width=11,fg="black",font="Times 20")
         self.bot.pack(padx=5,pady=10)
 
 

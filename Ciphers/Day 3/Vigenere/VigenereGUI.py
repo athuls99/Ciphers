@@ -69,7 +69,7 @@ def get(obj):
 
 if __name__ == "__main__":
     window = tk.Tk()
-    window.title("Affine Cipher")
+    window.title("Vigenere Cipher")
     #window.geometry("700x700")
     sobj = Start(window)
     enc = Cipher(window,sobj)

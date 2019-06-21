@@ -36,15 +36,23 @@ class Cipher:
     
     def enc(self):
         text = get(self.text)
+        #text = re.sub(r'[^A-Za-z]',"",text)
         etext = Encryptor(text.upper())
         self.etext.delete("1.0","end")
         self.etext.insert(tk.END,etext)
     
     def dec(self):
         etext = get(self.etext)
+        #etext = re.sub(r'[^A-Za-z]',"",etext)
         text = Decryptor(etext.lower())
         self.text.delete("1.0","end")
         self.text.insert(tk.END,text)
+
+    def clear(self,opt):
+        if opt == 0:
+            self.text.delete("1.0","end")
+        else:
+            self.etext.delete("1.0","end")
 
 def get(obj):
     return obj.get("1.0","end").strip()

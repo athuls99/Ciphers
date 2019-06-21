@@ -1,9 +1,0 @@
-key=secret
-message=zombies here
-ciphertext=zljeftdtot
-
-Input :
-Keyword : Star War
-Message : Attack at dawn
-Output :
-Ciphered String : SPPSAG SP RSVJ

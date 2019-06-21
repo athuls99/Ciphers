@@ -1,4 +1,0 @@
-1.key1=zgptfoihmuwdrcnykeqaxvsbl
-key2=mfnbdcrhsaxyogvituewlqzkp
-input=ATTACKATDAWN
-output=TIYBFHTIZBSY
