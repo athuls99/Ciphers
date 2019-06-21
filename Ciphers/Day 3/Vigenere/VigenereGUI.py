@@ -42,8 +42,7 @@ class Cipher:
         self.dbutton = tk.Button(eframe,text="Clear",command=lambda: self.clear(1),font="Arial 15")
         self.dbutton.pack(padx=10)
         self.etext = tk.Text(self.frame,height=40,width=65,fg="black",font="Times 15")
-        self.etext.pack(padx=10,pady=1)
-        
+        self.etext.pack(padx=10,pady=1)        
     
     def enc(self):
         text = get(self.text)
