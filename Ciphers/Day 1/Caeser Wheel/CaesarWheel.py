@@ -53,14 +53,14 @@ def update(key):
         length = len(text)
         text = encrypt(text,length,key)
         disp.delete("1.0","end")
-        disp.insert(END,text)
+        disp.insert(END,text.upper())
     elif val == 1:
         text = disp.get("1.0","end")
         text = list(text)
         length = len(text)
         text = decrypt(text,length,key)
         textentry.delete("1.0","end")
-        textentry.insert(END,text)
+        textentry.insert(END,text.lower())
     
 
 def getimage(image,ang):
@@ -97,13 +97,28 @@ if __name__ == "__main__":
 
     # Setting Tkinter variable
     v = IntVar()
+
+    # frame for radio buttons
+    tframe = Frame(frame)
+    tframe.pack(expand=1,fill=X,pady=1,padx=100)
+
+    # setting the radio options
+    r1 = Radiobutton(tframe,text="Encrypt",padx=20,variable=v, value=0)
+    r1.pack(side=LEFT)
+    r2 = Radiobutton(tframe,text="Decrypt",padx=40,variable=v, value=1)
+    r2.pack()
     
+    # set up frame to hold options
+    rframe = Frame(frame,bd=2,relief=RAISED)
+    rframe.pack(side=LEFT,expand=1,pady=1,padx=1)
+
     # The text message
-    text = Label(frame,
-                 text = "Enter a message",
+    text = Label(rframe,
+                 text = "The Plain Text",
                  fg='black',
                  font='Times 15',
                  bg='white')
+<<<<<<< HEAD
     text.pack(fill=X,expand=1,pady=1,padx=100)
     textentry = Text(frame,height=5,width=70,font='Times 15')
     textentry.pack(expand=1,padx=100)
@@ -117,10 +132,15 @@ if __name__ == "__main__":
     r1.pack(side=LEFT)
     r2 = Radiobutton(rframe,text="Decrypt",padx=40,variable=v, value=1)
     r2.pack()
+=======
+    text.pack(fill=X,expand=1,pady=1,padx=10)
+    textentry = Text(rframe,height=40,width=35,font='Times 15')
+    textentry.pack(expand=1,padx=1)  
+>>>>>>> 7d6017a30219efebfb99ae829837580842342f45
     
     # Frame to hold the canvas
     iframe = Frame(frame,bd=2,relief=RAISED)
-    iframe.pack(expand=1,fill=BOTH,pady=10,padx=100)
+    iframe.pack(side=LEFT,expand=1,fill=BOTH,pady=10,padx=5)
     
     # Set up the canvas
     canvas = Canvas(iframe,width=600,height=600)
@@ -133,15 +153,18 @@ if __name__ == "__main__":
     canvas.create_text(120,10,fill="darkblue",font="Times 15",
                        text = "Outer Circle: Cipher Text")
 
+    tlframe = Frame(frame,bd=2,relief=RAISED)
+    tlframe.pack(side=LEFT,expand=1,padx=5)
+
     # setting the end message
-    displabel = Label(frame,
-                      text = "The encrypted/decrypted text",
+    displabel = Label(tlframe,
+                      text = "The Cipher text",
                       fg='black',
                       font='Times 15',
                       bg='white')
-    displabel.pack(fill=X,expand=1,pady=1,padx=100)
-    disp = Text(frame,height=1,width=70,font='Times 15')
-    disp.pack(expand=1,padx=100)
+    displabel.pack(fill=X,expand=1,pady=1,padx=50)
+    disp = Text(tlframe,height=40,width=35,font='Times 15')
+    disp.pack(expand=1,padx=1)
     
     image1 = im.open("./materials/outerCircle.png")
     image2 = im.open("./materials/innerCircle.png")

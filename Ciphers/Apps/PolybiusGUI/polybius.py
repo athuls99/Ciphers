@@ -35,7 +35,7 @@ def encrypt(table, message):
             if ch in table[row]:
                 x = str((table[row].index(ch) + 1))
                 y = str(row + 1)
-                cipher += y + x
+                cipher += x + y
     return cipher
 
 def decrypt(table, numbers):
@@ -43,7 +43,7 @@ def decrypt(table, numbers):
     for index in range(0, len(numbers), 2):
         y = int(numbers[index]) - 1
         x = int(numbers[index + 1]) - 1
-        text += table[y][x]
+        text += table[x][y]
     return text
 
 
