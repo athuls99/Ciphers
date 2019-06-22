@@ -35,6 +35,7 @@ def RepSeqSpaces(word):
                     Patspace[Pat].append(p-Pattern)
     return Patspace
 
+#Get all the dactors of the Spaces between the repeated Subsequences
 def getFactors(n) : 
     Factors=[]
     if (n<2):
