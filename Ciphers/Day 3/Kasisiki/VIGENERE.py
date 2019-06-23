@@ -24,7 +24,7 @@ def preprocess(encryptedtext):
 
 def RepSeqSpaces(word):
     Patspace={}
-    # We will analyse only for patterns of length 3 to 6
+    # We will analyse only for patterns of length 3 to 5
     for Pattern_length in range(3,6):
         for Pattern in range(len(word)-Pattern_length):
             Pat=word[Pattern:Pattern+Pattern_length]
@@ -54,10 +54,11 @@ def most_common_factors(Factors):
     Fc=Counter(Factors).most_common()
     return Fc
 """
-
+#To select the first element of a tuple
 def getItemAtIndexOne(x):
     return x[1]
 
+#To get the most common factors of all the factors generated for the different subsequence space lengths
 def most_common_factors(seqFactors):
     factorCounts = {} # key is a factor, value is how often if occurs
     for seq in seqFactors:
@@ -73,6 +74,12 @@ def most_common_factors(seqFactors):
     factorsByCount.sort(key=getItemAtIndexOne, reverse=True)
     return factorsByCount
 
+#Find the repeated Susequences
+#Find all the factors of each repeated subsequence spacing
+#Extend that to the actual factors array
+#Find the most common using the Function most_common_factors
+#Hence generate all the possible keys
+
 def KasiskiAnalysis(ciphertext):
     RepSeqSpace = RepSeqSpaces(ciphertext)
     patFactors={}
@@ -86,6 +93,9 @@ def KasiskiAnalysis(ciphertext):
         pos_key.append(t[0])
     return pos_key
 
+#string generator
+#Generates a string with letters from the ciphertext 
+#at position 0,key_len,2*key_len ... so on
 def Pattern_analyzer(n,key_len,word):
     word=preprocess(word)
     p=n-1
@@ -101,6 +111,14 @@ def attempt_with_key_len(ciphertext,mpos_key):
     for ith in range(1,mpos_key+1):
         ithletters=Pattern_analyzer(ith,mpos_key,ciphertext)
 """
+#preprocess each string which is the mostlikelykey
+#Generate a string which consists of characters with letters from the ciphertext starting from 
+#0,key_len,2*key_len
+#Since a Vigenere cipher is a Caeser cipher in varying intervals of key length
+#We try all possible letters as the key to the vigenere cipher to try and decrypt it.
+#We use an algorithm to check whether the decrypted text generated is an actual word of english or not
+#we save all those values in an array called freqscores.
+
 def attemptHackWithKeyLength(ciphertext, mostLikelyKeyLength):
     ciphertextUp = ciphertext.upper()
     allFreqScores = []
