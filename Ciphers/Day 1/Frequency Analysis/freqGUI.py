@@ -53,7 +53,7 @@ class Cipher:
         self.frame.pack(expand=1, side=tk.LEFT, pady=5, padx=10)
         iframe = tk.Frame(self.frame)
         iframe.pack(expand=1)
-        label = tk.Label(iframe, text="Plain text", font="Times 20 bold")
+        label = tk.Label(iframe, text="Cipher Text", font="Times 20 bold")
         label.pack(padx=10)
         self.ebutton = tk.Button(
             iframe, text="Decrypt", command=self.enc, font="Arial 15")
@@ -61,7 +61,7 @@ class Cipher:
         self.ebutton = tk.Button(
             iframe, text="Clear", command=lambda: self.clear(0), font="Arial 15")
         self.ebutton.pack(padx=10)
-        self.text = tk.Text(self.frame, height=25, width=70,
+        self.text = tk.Text(self.frame, height=20, width=65,
                             fg="black", font="Times 15")
         self.text.pack(padx=10, pady=2)
 
@@ -70,13 +70,13 @@ class Cipher:
         self.frame.pack(expand=1, pady=5, padx=10, fill=tk.X)
         eframe = tk.Frame(self.frame)
         eframe.pack(expand=1)
-        label = tk.Label(eframe, text="Cipher text", font="Times 20 bold")
+        label = tk.Label(eframe, text="Decrypted Text", font="Times 20 bold")
         label.pack(padx=10)
         self.dbutton = tk.Button(
             eframe, text="Clear", command=lambda: self.clear(1), font="Arial 15")
         self.dbutton.pack(padx=10)
-        self.etext = tk.Text(self.frame, height=25,
-                             width=70, fg="black", font="Times 15")
+        self.etext = tk.Text(self.frame, height=20,
+                             width=65, fg="black", font="Times 15")
         self.etext.pack(padx=10, pady=2)
 
     def enc(self):
