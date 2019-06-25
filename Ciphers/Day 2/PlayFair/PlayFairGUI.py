@@ -1,7 +1,9 @@
-from playfairCipher import preprocess,encryptMessage,decryptMessage,removeX
+from playfairCipherF import preprocess,encryptMessage,decryptMessage,removeX,prep_key
 import tkinter as tk
 from tkinter import ttk
 from wordsegment import load,segment
+from collections import OrderedDict
+import re
 
 class Start:
     def __init__(self,master):
@@ -45,10 +47,17 @@ class Cipher:
         self.dbutton.pack(padx=10)
         self.etext = tk.Text(self.frame,height=40,width=65,fg="black",font="Times 15")
         self.etext.pack(padx=10,pady=1)
-    
+    """
+    def prep_key(keyword):
+        keyword=keyword.upper()
+        keyword=keyword.replace(" ","")
+        return "".join(OrderedDict.fromkeys(keyword)) 
+    """
+
     def enc(self):
         text = get(self.text)
         key = get(self.k)
+        #key=prep_key(key)
         (encrypt,ind) = preprocess(0,text.upper(),key.upper())
         etext = encryptMessage(encrypt,ind)
         etext = "".join(etext).upper()
@@ -58,6 +67,7 @@ class Cipher:
     def dec(self):
         etext = get(self.etext)
         key = get(self.k)
+        #key=prep_key(key)
         (encrypt,ind) = preprocess(1,etext.upper(),key.upper())
         text = decryptMessage(encrypt,ind)
         text = removeX(text)
