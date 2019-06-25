@@ -35,7 +35,7 @@ def RepSeqSpaces(word):
                     Patspace[Pat].append(p-Pattern)
     return Patspace
 
-#Get all the dactors of the Spaces between the repeated Subsequences
+#Get all the factors of the Spaces between the repeated Subsequences
 def getFactors(n) : 
     Factors=[]
     if (n<2):
@@ -96,6 +96,7 @@ def KasiskiAnalysis(ciphertext):
 #string generator
 #Generates a string with letters from the ciphertext 
 #at position 0,key_len,2*key_len ... so on
+
 def Pattern_analyzer(n,key_len,word):
     word=preprocess(word)
     p=n-1
