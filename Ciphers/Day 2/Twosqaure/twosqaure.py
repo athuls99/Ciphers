@@ -1,4 +1,5 @@
 import math
+from wordsegment import load,segment
 def matrix(key):
     matrix=[]
     for e in key.upper():
@@ -53,6 +54,7 @@ def find_position(key_matrix,letter):
             if key_matrix[i][j]==letter:
                 x=i
                 y=j
+                break
 
     return x,y
 
@@ -95,15 +97,15 @@ def decrypt(cipher,key1,key2):
         else:
             plaintext.append(key_matrix1[p1][q2])
             plaintext.append(key_matrix2[p2][q1])
-
-    for unused in range(len(plaintext)):
-        if "X" in plaintext:
-            plaintext.remove("X")
     
     output=""
     for e in plaintext:
         output+=e
-    return output.lower()
+    
+    output = segment(output)
+    if 'x' in output[-1] and len(output[-1]) == 1:
+        output = output[:-1]
+    return " ".join(output).lower()
 
 #key="cipher"
 #message="effecttreecorrectapple"

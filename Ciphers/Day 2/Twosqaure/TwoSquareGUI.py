@@ -78,11 +78,8 @@ class Cipher:
         key2 = get(self.k2).upper()
         self.sett(key1,key2)
         text = decrypt(etext,key1,key2)
-        text = segment(text)
-        if 'x' in text[-1] and len(text[-1]) == 1:
-            text = text[:-1]
         self.text.delete("1.0","end")
-        self.text.insert(tk.END," ".join(text).lower())
+        self.text.insert(tk.END,text.lower())
 
     def clear(self,opt):
         if opt == 0:
