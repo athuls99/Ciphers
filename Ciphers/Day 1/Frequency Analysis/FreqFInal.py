@@ -1,37 +1,3 @@
-def getFrequency(encryptedText):
-    frequencyArray = []
-
-    for i in range(0, ord('Z') - ord('A') + 1):
-        tempChar = chr(ord('A') + i)
-        c = encryptedText.count(tempChar)
-        frequencyArray.append(
-            [tempChar, float("%.2f" % (c / len(encryptedText) * 100)), c])
-
-    frequencyArray.sort(key=lambda x: x[1] - (0.0001*ord(x[0])))
-    frequencyArray.reverse()
-    return frequencyArray
-
-
-def decrypt(encryptedText, frequencyArray):
-    lenAplha = len(freqalpha)
-    lenText = len(encryptedText)
-
-    replacementPairs = []
-
-    for i in range(lenAplha):
-        replacementPairs.append((frequencyArray[i][0], freqalpha[i]))
-
-    decryptArr = []
-    print(replacementPairs)
-    for i in encryptedText:
-        decryptArr.append(i)
-
-    for i in replacementPairs:
-        for j in range(lenText):
-            if(decryptArr[j] == i[0]):
-                decryptArr[j] = i[1].lower()
-    decryptedText = ("").join(decryptArr)
-    return decryptedText
 
 
 freqalpha = "ETAOINSRHDLUCMFYWGPBVKXQJZ"
