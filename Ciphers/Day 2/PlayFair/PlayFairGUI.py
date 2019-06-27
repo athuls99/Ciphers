@@ -1,17 +1,8 @@
-<<<<<<< HEAD
-from playfairCipherF import preprocess,encryptMessage,decryptMessage,removeX,prep_key
-import tkinter as tk
-from tkinter import ttk
-from wordsegment import load,segment
-from collections import OrderedDict
-import re
-=======
 from playFair6x6 import preprocess, encryptMessage, decryptMessage, removeX
 import tkinter as tk
 from tkinter import ttk
 from wordsegment import load, segment
 
->>>>>>> Updated playfair cipher
 
 class Start:
     def __init__(self, master):
@@ -58,32 +49,15 @@ class Cipher:
         self.dbutton = tk.Button(
             eframe, text="Clear", command=lambda: self.clear(1), font="Arial 15")
         self.dbutton.pack(padx=10)
-<<<<<<< HEAD
-        self.etext = tk.Text(self.frame,height=40,width=65,fg="black",font="Times 15")
-        self.etext.pack(padx=10,pady=1)
-    """
-    def prep_key(keyword):
-        keyword=keyword.upper()
-        keyword=keyword.replace(" ","")
-        return "".join(OrderedDict.fromkeys(keyword)) 
-    """
-=======
         self.etext = tk.Text(self.frame, height=40,
                              width=65, fg="black", font="Times 15")
         self.etext.pack(padx=10, pady=1)
->>>>>>> Updated playfair cipher
 
     def enc(self):
         text = get(self.text)
         key = get(self.k)
-<<<<<<< HEAD
-        #key=prep_key(key)
-        (encrypt,ind) = preprocess(0,text.upper(),key.upper())
-        etext = encryptMessage(encrypt,ind)
-=======
         (encrypt, ind) = preprocess(0, text.upper(), key.upper())
         etext = encryptMessage(encrypt, ind)
->>>>>>> Updated playfair cipher
         etext = "".join(etext).upper()
         self.etext.delete("1.0", "end")
         self.etext.insert(tk.END, etext)
@@ -91,15 +65,8 @@ class Cipher:
     def dec(self):
         etext = get(self.etext)
         key = get(self.k)
-<<<<<<< HEAD
-        #key=prep_key(key)
-        (encrypt,ind) = preprocess(1,etext.upper(),key.upper())
-        text = decryptMessage(encrypt,ind)
-        text = removeX(text)
-=======
         (encrypt, ind) = preprocess(1, etext.upper(), key.upper())
         text = decryptMessage(encrypt, ind)
->>>>>>> Updated playfair cipher
         text = segment("".join(text))
         text = " ".join(text).lower()
         self.text.delete("1.0", "end")
